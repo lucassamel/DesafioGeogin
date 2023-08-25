@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioGeogin", "DesafioGeo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDesafioGeogin", "ApiDesafioGeogin\ApiDesafioGeogin.csproj", "{123753B8-0E11-4D52-A377-E1BF08E3550E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{3DF20130-DFEB-4202-985F-7D6874F8FF69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
