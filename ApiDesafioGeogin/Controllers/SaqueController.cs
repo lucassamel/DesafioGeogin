@@ -31,9 +31,9 @@ namespace ApiDesafioGeogin.Controllers
         {
             try
             {
-                _caixaEletronicoBusiness.RealizarSaque(valorSaque);
+                CaixaEletronico cx = _caixaEletronicoBusiness.RealizarSaque(valorSaque);
 
-                return Ok("Saque realizado");
+                return Ok(cx);
             }
             catch (Exception ex) 
             { 

@@ -15,10 +15,11 @@ namespace Domain.Business
         {
             _caixaEletronicoRepository = new CaixaEletronicoRepository();
         }
-        public void RealizarSaque(int valorSaque)
+        public CaixaEletronico RealizarSaque(int valorSaque)
         {
            
             CaixaEletronico cx = _caixaEletronicoRepository.ObterNotasDisponiveis()!;
+            CaixaEletronico saque = new CaixaEletronico();
             int totalCaixa = 0;
 
             totalCaixa += cx.NotaDez!.ValorTotal;
@@ -38,27 +39,32 @@ namespace Domain.Business
                 if (cx.NotaDuzentos.Quantidade > 0 && valorSaque >= cx.NotaDuzentos.Valor)
                 {
                     valorSaque -= cx.NotaDuzentos.Valor;
-                    cx.NotaDuzentos.Quantidade -= 1;                                   
+                    cx.NotaDuzentos.Quantidade -= 1;  
+                    saque.NotaDuzentos.Quantidade += 1;
                 }
                 else if (cx.NotaCem.Quantidade > 0 && valorSaque >= cx.NotaCem.Valor)
                 {
                     valorSaque -= cx.NotaCem.Valor;
                     cx.NotaCem.Quantidade -= 1;
+                    saque.NotaCem.Quantidade += 1;
                 }
                 else if (cx.NotaCinquenta.Quantidade > 0 && valorSaque >= cx.NotaCinquenta.Valor)
                 {
                     valorSaque -= cx.NotaCinquenta.Valor;
                     cx.NotaCinquenta.Quantidade -= 1;
+                    saque.NotaCinquenta.Quantidade += 1;
                 }
                 else if (cx.NotaVinte.Quantidade > 0 && valorSaque >= cx.NotaVinte.Valor)
                 {
                     valorSaque -= cx.NotaVinte.Valor;
                     cx.NotaVinte.Quantidade -= 1;
+                    saque.NotaVinte.Quantidade += 1;
                 }
                 else if (cx.NotaDez.Quantidade > 0 && valorSaque >= cx.NotaDez.Valor)
                 {
                     valorSaque -= cx.NotaDez.Valor;
                     cx.NotaDez.Quantidade -= 1;
+                    saque.NotaDez.Quantidade += 1;
                 }
             }
 
@@ -66,8 +72,12 @@ namespace Domain.Business
             {
                 _caixaEletronicoRepository.AtualizarCaixaEletronico(cx);
 
+                return saque;
+
                 throw (new Exception("Saque realizado!"));
-            }            
+            } 
+            
+            return saque;
           
         }
     }

@@ -12,7 +12,7 @@ namespace Domain.Repository
         {
             _dataBase = "C:\\Users\\Fadami\\source\\repos\\DesafioGeogin\\Domain\\Data\\db.json";            
         }
-        public CaixaEletronico? ObterNotasDisponiveis()
+        public CaixaEletronico ObterNotasDisponiveis()
         {
             string jsonString = File.ReadAllText(_dataBase);
             CaixaEletronico caixaEletronico = JsonConvert.DeserializeObject<CaixaEletronico>(jsonString)!;
