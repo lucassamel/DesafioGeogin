@@ -41,21 +41,36 @@ namespace DesafioGeogin.Controllers
         }
 
         [HttpPost]
-        public async Task<CaixaEletronico> PostCaixaEletronico(int saque)
+        public async Task<IActionResult> PostCaixaEletronico(int saque)
         {       
             CaixaEletronico cx = new CaixaEletronico();            
             using (var httpClient = new HttpClient())
             {            
                 StringContent content = new StringContent(JsonConvert.SerializeObject(saque), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("http://localhost:26447/api/Saque",content))
+                try
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    cx = JsonConvert.DeserializeObject<CaixaEletronico>(apiResponse)!;
+                    using (var response = await httpClient.PostAsync("http://localhost:26447/api/Saque", content))
+                    {
+                        if (!response.IsSuccessStatusCode)
+                        {
+                            throw new HttpRequestException("Não é possível sacar esse valor.");
+                        }
+
+                        string apiResponse = await response.Content.ReadAsStringAsync();                     
+                        cx = JsonConvert.DeserializeObject<CaixaEletronico>(apiResponse)!;
+                    }
+
+                 return Ok(cx);
                 }
+                catch (HttpRequestException ex)
+                {
+                    return BadRequest(ex.Message);
+                }                             
+                
             }
 
-            return cx;
+            
         }
 
         public IActionResult Privacy()

@@ -72,9 +72,7 @@ namespace Domain.Business
             {
                 _caixaEletronicoRepository.AtualizarCaixaEletronico(cx);
 
-                return saque;
-
-                throw (new Exception("Saque realizado!"));
+                return saque;               
             } 
             
             return saque;

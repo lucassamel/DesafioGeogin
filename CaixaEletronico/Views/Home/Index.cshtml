@@ -5,15 +5,15 @@
 <div class="text-center">
     <h1 class="display-4">Caixa Eletrônico</h1>    
 
-    <div class="d-block">
-        <div class="card border-dark mb-3" style="max-width: 25rem;">
+    <div class="d-flex justify-content-center">
+        <div class="card border-dark mb-3" style="min-width: 25rem;">
             <div class="card-header">Notas disponíveis</div>
             <div class="card-body text-dark">
-                <p class="card-text">- 10 notas de R$10,00;</p>
-                <p class="card-text">- 10 notas de R$20,00;</p>
-                <p class="card-text">- 10 notas de R$50,00;</p>
-                <p class="card-text">- 10 notas de R$100,00;</p>
-                <p class="card-text">- 10 notas de R$200,00;</p>
+                <p class="card-text" id="nota10"> notas de R$10,00;</p>
+                <p class="card-text" id="nota20">  notas de R$20,00;</p>
+                <p class="card-text" id="nota50"> notas de R$50,00;</p>
+                <p class="card-text" id="nota100"> notas de R$100,00;</p>
+                <p class="card-text" id="nota200"> notas de R$200,00;</p>
             </div>
         </div>
 
@@ -22,37 +22,52 @@
     <div class="text-center">
         <h4>Digite o Valor Desejado para Saque:</h4>
     </div>
+    <br/>
     
-   <form> 
-      <div class="form-row align-content-center">    
-        <div class="col-md-3 mb-3">               
-          <input type="number" class="form-control" id="valorSaque" required>
-          <div class="invalid-feedback">
+    <div class="d-flex justify-content-center" >
+        
+          <div class="form-row align-content-center">    
+            <div class="col-md-3 mb-3">
+                    <input type="number" class="form-control" id="valorSaque" style="min-width: 20rem;" required>
+                <div class="invalid-feedback" style="min-width: 20rem;">
             
-          </div>
-        </div>
-      </div>  
-      <button id="sacar" class="btn btn-primary" type="submit">Sacar!</button>
-   </form>
-
+              </div>
+            </div>
+          </div>                    
+    </div> 
+    
+        <button id="btnSacar" class="btn btn-primary">Sacar!</button>
+   
 </div>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-            carregarDados();
             
-            eventos();
+            CarregarDados();
+
+            $("#btnSacar").on("click", (e) => {
+                var valorSaque = $("#valorSaque").val();
+                if (Validar(valorSaque)){
+                    RealizarSaque(valorSaque);
+                }                            
+            });
+            
         });
+           
 
-        function carregarDados(){            
+        function CarregarDados(){
             $.ajax({
-                type:"GET",
+                type: "GET",
                 url: "@Url.Action("GetCaixaEletronico")",
-                dataType: "json",               
-                success: function (result) {                                   
-
+                dataType: "json",
+                success: function (result) {
                     console.log(result);
+                    $("#nota10").text(result.notaDez.quantidade + " notas de R$10,00");
+                    $("#nota20").text(result.notaVinte.quantidade + " notas de R$20,00");
+                    $("#nota50").text(result.notaCinquenta.quantidade + " notas de R$50,00");
+                    $("#nota100").text(result.notaCem.quantidade + " notas de R$100,00");
+                    $("#nota200").text(result.notaDuzentos.quantidade + " notas de R$200,00");
                 },
                 error: function (req, status, error) {
                     console.log(status);
@@ -60,26 +75,39 @@
             });
         }
 
-        function realizarSaque(valorSaque){
-            $.ajax({
+        async function RealizarSaque(valorSaque){
+            await $.ajax({
                 type: "POST",
                 url: "@Url.Action("PostCaixaEletronico")",
                 dataType: "json",
-                data: {saque: valorSaque},
+                data: { saque: valorSaque },
                 success: function (result) {
                     console.log(result);
                 },
                 error: function (req, status, error) {
-                    console.log(status);
+                    console.log(req.responseText);
+                    $("#valorSaque").addClass("is-invalid").siblings(".invalid-feedback").text(req.responseText).focus();
                 }
             });
+            CarregarDados();
         }
 
-        function eventos(){
-            $("#sacar").on("click", (e) => {
-                realizarSaque($("#valorSaque").val())
-                console.log($("#valorSaque").val())
-            });
+        function Validar(valor) {
+            var ok = true;
+            var VerificarCampo = function (teste, mensagem, seletor) {
+                if (teste) {
+                    ok = false;
+                    $(seletor).addClass("is-invalid").siblings(".invalid-feedback").text(mensagem).focus();
+                } else {
+                    $(seletor).removeClass("is-invalid");
+                }
+                return teste;
+            }
+
+            VerificarCampo(valor <= 0, "O valor de saque precisa maior que R$0", "#valorSaque");
+
+            return ok;
         }
+                
     </script>
 }
