@@ -9,7 +9,7 @@ namespace Domain.Repository
         private readonly string _dataBase;       
 
         public CaixaEletronicoRepository()
-        {
+        {           
             _dataBase = "C:\\Users\\Fadami\\source\\repos\\DesafioGeogin\\Domain\\Data\\db.json";            
         }
         public CaixaEletronico ObterNotasDisponiveis()

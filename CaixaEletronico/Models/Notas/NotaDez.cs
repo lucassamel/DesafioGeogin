@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Domain.Model.Notas
 {
-    public class NotaVinte
+    public class NotaDez
     {
-        public NotaVinte()
+        public NotaDez()
         {
-            Valor = 20;
+            Quantidade = 0;
+            Valor = 10;
+            ValorTotal = 0;
         }
         public int Quantidade { get; set; }
         public int Valor { get; set; }
-        public int ValorTotal { get { return this.Quantidade * this.Valor; } }
+        public int ValorTotal { get; set; }
     }
 }

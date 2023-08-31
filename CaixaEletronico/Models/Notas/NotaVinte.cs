@@ -10,10 +10,12 @@ namespace Domain.Model.Notas
     {
         public NotaVinte()
         {
+            Quantidade = 0;
             Valor = 20;
+            ValorTotal = 0;
         }
         public int Quantidade { get; set; }
         public int Valor { get; set; }
-        public int ValorTotal { get { return this.Quantidade * this.Valor; } }
+        public int ValorTotal { get; set; }
     }
 }

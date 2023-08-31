@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioGeogin", "DesafioGeogin\DesafioGeogin.csproj", "{7C7C3F34-2F40-4CAD-BD8F-1F1A291FCAE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDesafioGeogin", "ApiDesafioGeogin\ApiDesafioGeogin.csproj", "{123753B8-0E11-4D52-A377-E1BF08E3550E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDesafioGeogin", "ApiDesafioGeogin\ApiDesafioGeogin.csproj", "{123753B8-0E11-4D52-A377-E1BF08E3550E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{3DF20130-DFEB-4202-985F-7D6874F8FF69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{3DF20130-DFEB-4202-985F-7D6874F8FF69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioGeogin", "CaixaEletronico\DesafioGeogin.csproj", "{E45011E7-BD84-496C-9C8A-14C5B4540084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7C7C3F34-2F40-4CAD-BD8F-1F1A291FCAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C7C3F34-2F40-4CAD-BD8F-1F1A291FCAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C7C3F34-2F40-4CAD-BD8F-1F1A291FCAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C7C3F34-2F40-4CAD-BD8F-1F1A291FCAE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{123753B8-0E11-4D52-A377-E1BF08E3550E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF20130-DFEB-4202-985F-7D6874F8FF69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45011E7-BD84-496C-9C8A-14C5B4540084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45011E7-BD84-496C-9C8A-14C5B4540084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45011E7-BD84-496C-9C8A-14C5B4540084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45011E7-BD84-496C-9C8A-14C5B4540084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
