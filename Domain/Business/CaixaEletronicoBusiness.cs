@@ -66,6 +66,10 @@ namespace Domain.Business
                     cx.NotaDez.Quantidade -= 1;
                     saque.NotaDez.Quantidade += 1;
                 }
+                else
+                {
+                    throw new Exception("Não é possível sacar esse valor.");
+                }
             }
 
             if(valorSaque == 0)

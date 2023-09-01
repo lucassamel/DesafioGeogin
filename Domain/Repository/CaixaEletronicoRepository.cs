@@ -1,6 +1,9 @@
 ﻿using Domain.Model;
 using Domain.Model.Notas;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.Reflection;
 
 namespace Domain.Repository
 {
@@ -9,8 +12,12 @@ namespace Domain.Repository
         private readonly string _dataBase;       
 
         public CaixaEletronicoRepository()
-        {           
-            _dataBase = "C:\\Users\\Fadami\\source\\repos\\DesafioGeogin\\Domain\\Data\\db.json";            
+        {
+            string codeBase = Environment.CurrentDirectory.ToString();
+            UriBuilder uri = new UriBuilder(codeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+             
+            _dataBase = Path.GetDirectoryName(path) + "\\Domain\\DataBase\\db.json";            
         }
         public CaixaEletronico ObterNotasDisponiveis()
         {
@@ -25,5 +32,7 @@ namespace Domain.Repository
             string jsonString = JsonConvert.SerializeObject(caixaEletronico, Formatting.Indented);
             File.WriteAllText(_dataBase, jsonString);
         }
+
+
     }
 }

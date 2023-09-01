@@ -23,15 +23,25 @@
         <h4>Digite o Valor Desejado para Saque:</h4>
     </div>
     <br/>
+
+    <div class="d-flex justify-content-center d-none" id="saqueRealizado">
+        <div class="card border-success mb-3" style="max-width: 18rem;">            
+            <div class="card-body text-success" id="notasSacadas">
+                <h5 class="card-title">Saque realizado!</h5>
+                <p class="card-text">R$100,00</p>
+            </div>
+
+        </div>
+    </div>
+    
     
     <div class="d-flex justify-content-center" >
         
           <div class="form-row align-content-center">    
             <div class="col-md-3 mb-3">
-                    <input type="number" class="form-control" id="valorSaque" style="min-width: 20rem;" required>
-                <div class="invalid-feedback" style="min-width: 20rem;">
-            
-              </div>
+                <input type="number" class="form-control" id="valorSaque" style="min-width: 20rem;" required>
+                <div class="invalid-feedback" style="min-width: 20rem;"></div>
+                <div class="valid-feedback" style="min-width: 20rem;"></div>
             </div>
           </div>                    
     </div> 
@@ -48,6 +58,7 @@
 
             $("#btnSacar").on("click", (e) => {
                 var valorSaque = $("#valorSaque").val();
+                $("#saqueRealizado").addClass("d-none");
                 if (Validar(valorSaque)){
                     RealizarSaque(valorSaque);
                 }                            
@@ -61,8 +72,7 @@
                 type: "GET",
                 url: "@Url.Action("GetCaixaEletronico")",
                 dataType: "json",
-                success: function (result) {
-                    console.log(result);
+                success: function (result) {                    
                     $("#nota10").text(result.notaDez.quantidade + " notas de R$10,00");
                     $("#nota20").text(result.notaVinte.quantidade + " notas de R$20,00");
                     $("#nota50").text(result.notaCinquenta.quantidade + " notas de R$50,00");
@@ -82,7 +92,9 @@
                 dataType: "json",
                 data: { saque: valorSaque },
                 success: function (result) {
+                    $("#saqueRealizado").removeClass("d-none");
                     console.log(result);
+                    MontarSaqueRealizado(result);
                 },
                 error: function (req, status, error) {
                     console.log(req.responseText);
@@ -90,6 +102,21 @@
                 }
             });
             CarregarDados();
+        }
+
+        function MontarSaqueRealizado(obj) {
+            if ($("#notasSacadas").children().length > 0) {
+                $("#notasSacadas").children().remove();
+            }
+            $("#notasSacadas").append(`<h5 class="card-title">Saque realizado!</h5>`);            
+            
+            for (const prop in obj) {
+                console.log(obj[prop]);
+                if (obj[prop].quantidade > 0) {
+                    $("#notasSacadas").append(`<p class="card-text"> ${obj[prop].quantidade} notas de R$${obj[prop].valor},00</p>`);
+                }
+               
+            }
         }
 
         function Validar(valor) {
@@ -100,6 +127,7 @@
                     $(seletor).addClass("is-invalid").siblings(".invalid-feedback").text(mensagem).focus();
                 } else {
                     $(seletor).removeClass("is-invalid");
+                    $(seletor).addClass("was-validated").siblings(".valid-feedback").text("teste").focus();
                 }
                 return teste;
             }

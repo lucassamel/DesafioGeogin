@@ -23,7 +23,7 @@ namespace DesafioGeogin.Controllers
         }
 
         [HttpGet]
-        public async Task<CaixaEletronico> GetCaixaEletronico()
+        public async Task<IActionResult> GetCaixaEletronico()
         {
             CaixaEletronico caixaEletronico = new CaixaEletronico();
             //HttpResponseMessage response = new HttpResponseMessage();
@@ -37,9 +37,9 @@ namespace DesafioGeogin.Controllers
                 }
             }
 
-            return caixaEletronico;
+            return Ok(caixaEletronico);
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> PostCaixaEletronico(int saque)
         {       
@@ -54,7 +54,7 @@ namespace DesafioGeogin.Controllers
                     {
                         if (!response.IsSuccessStatusCode)
                         {
-                            throw new HttpRequestException("Não é possível sacar esse valor.");
+                            throw new HttpRequestException(await response.Content.ReadAsStringAsync());
                         }
 
                         string apiResponse = await response.Content.ReadAsStringAsync();                     
@@ -69,7 +69,6 @@ namespace DesafioGeogin.Controllers
                 }                             
                 
             }
-
             
         }
 
