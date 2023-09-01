@@ -19,13 +19,20 @@ namespace ApiDesafioGeogin.Controllers
             _caixaEletronicoRepository = new CaixaEletronicoRepository();
             _caixaEletronicoBusiness = new CaixaEletronicoBusiness();
         }
-        
+        /// <summary>
+        /// Obtem as notas e o valor total disponível no caixa.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<CaixaEletronico> Get()
         {         
             return Ok(_caixaEletronicoRepository.ObterNotasDisponiveis());
         }     
-        
+        /// <summary>
+        /// Realiza o saque e atualiza a disponibilidade de notas no caixa.
+        /// </summary>
+        /// <param name="valorSaque"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] int valorSaque)
         {

@@ -21,7 +21,10 @@ namespace DesafioGeogin.Controllers
             
             return View();
         }
-
+        /// <summary>
+        /// Realiza uma requisição na api obtendo a disponibilidade do Caixa.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetCaixaEletronico()
         {
@@ -39,7 +42,11 @@ namespace DesafioGeogin.Controllers
 
             return Ok(caixaEletronico);
         }
-        
+        /// <summary>
+        /// Realiza o saque no Caixa.
+        /// </summary>
+        /// <param name="saque"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> PostCaixaEletronico(int saque)
         {       

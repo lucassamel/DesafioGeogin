@@ -15,6 +15,14 @@ namespace Domain.Business
         {
             _caixaEletronicoRepository = new CaixaEletronicoRepository();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valorSaque"></param>
+        /// <returns>
+        /// Retorna um objeto com o valor sacado ou uma mensagem de erro.
+        /// </returns>
+        /// <exception cref="Exception"></exception>
         public CaixaEletronico RealizarSaque(int valorSaque)
         {
            
