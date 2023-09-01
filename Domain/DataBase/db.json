@@ -1,27 +1,28 @@
 {
   "NotaDez": {
-    "Quantidade": 36,
+    "Quantidade": 34,
     "Valor": 10,
-    "ValorTotal": 360
+    "ValorTotal": 340
   },
   "NotaVinte": {
-    "Quantidade": 20,
+    "Quantidade": 19,
     "Valor": 20,
-    "ValorTotal": 400
+    "ValorTotal": 380
   },
   "NotaCinquenta": {
-    "Quantidade": 31,
+    "Quantidade": 29,
     "Valor": 50,
-    "ValorTotal": 1550
+    "ValorTotal": 1450
   },
   "NotaCem": {
-    "Quantidade": 20,
+    "Quantidade": 18,
     "Valor": 100,
-    "ValorTotal": 2000
+    "ValorTotal": 1800
   },
   "NotaDuzentos": {
-    "Quantidade": 10,
+    "Quantidade": 8,
     "Valor": 200,
-    "ValorTotal": 2000
-  }
+    "ValorTotal": 1600
+  },
+  "TotalCaixa": 5570
 }

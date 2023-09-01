@@ -19,17 +19,9 @@ namespace Domain.Business
         {
            
             CaixaEletronico cx = _caixaEletronicoRepository.ObterNotasDisponiveis()!;
-            CaixaEletronico saque = new CaixaEletronico();
-            int totalCaixa = 0;
-
-            totalCaixa += cx.NotaDez!.ValorTotal;
-            totalCaixa += cx.NotaVinte!.ValorTotal;
-            totalCaixa += cx.NotaCinquenta!.ValorTotal;
-            totalCaixa += cx.NotaCem!.ValorTotal;
-            totalCaixa += cx.NotaDuzentos!.ValorTotal;
-
-            
-            if (valorSaque > totalCaixa || (valorSaque % 10 != 0))
+            CaixaEletronico saque = new CaixaEletronico();           
+         
+            if (valorSaque > cx.TotalCaixa || (valorSaque % 10 != 0))
             {
                 throw new Exception("Não é possível sacar esse valor.");
             }           

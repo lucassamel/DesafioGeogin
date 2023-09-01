@@ -18,6 +18,17 @@ namespace DesafioGeogin.Models
         public NotaCinquenta NotaCinquenta { get; set; }
         public NotaCem NotaCem { get; set; }
         public NotaDuzentos NotaDuzentos { get; set; }
+        public int TotalCaixa
+        {
+            get
+            {
+                return this.NotaDez.ValorTotal +
+                    this.NotaVinte.ValorTotal +
+                    this.NotaCinquenta.ValorTotal +
+                    this.NotaCem.ValorTotal +
+                    this.NotaDuzentos.ValorTotal;
+            }
+        }
 
     }
 }

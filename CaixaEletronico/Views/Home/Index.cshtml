@@ -14,6 +14,7 @@
                 <p class="card-text" id="nota50"> notas de R$50,00;</p>
                 <p class="card-text" id="nota100"> notas de R$100,00;</p>
                 <p class="card-text" id="nota200"> notas de R$200,00;</p>
+                <p class="card-text" id="totalCaixa">Total Caixa: ;</p>
             </div>
         </div>
 
@@ -78,6 +79,7 @@
                     $("#nota50").text(result.notaCinquenta.quantidade + " notas de R$50,00");
                     $("#nota100").text(result.notaCem.quantidade + " notas de R$100,00");
                     $("#nota200").text(result.notaDuzentos.quantidade + " notas de R$200,00");
+                    $("#totalCaixa").text("Total Caixa: R$" + result.totalCaixa);
                 },
                 error: function (req, status, error) {
                     console.log(status);
@@ -114,9 +116,9 @@
                 console.log(obj[prop]);
                 if (obj[prop].quantidade > 0) {
                     $("#notasSacadas").append(`<p class="card-text"> ${obj[prop].quantidade} notas de R$${obj[prop].valor},00</p>`);
-                }
-               
+                }               
             }
+            $("#notasSacadas").append(`<p class="card-text">Total: R$${obj.totalCaixa},00</p>`);
         }
 
         function Validar(valor) {
